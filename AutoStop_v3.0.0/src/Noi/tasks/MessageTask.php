@@ -4,7 +4,6 @@ namespace Noi\tasks;
 
 use pocketmine\scheduler\Task;
 
-
 class MessageTask extends Task{
 
 	public function __construct($owner, $time){
@@ -18,15 +17,11 @@ class MessageTask extends Task{
 
 	}
 
-
 	public function onRun(int $tick){
 
 		$this->TimeSchedule();
 
 	}
-
-
-
 
 	private function TimeSchedule(){
 
@@ -62,7 +57,4 @@ class MessageTask extends Task{
 		$this->maxtime = $this->maxtime - 1200;
 
 	}
-
-
-
 }
