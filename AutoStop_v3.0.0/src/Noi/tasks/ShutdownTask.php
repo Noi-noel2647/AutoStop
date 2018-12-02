@@ -13,16 +13,14 @@ class ShutdownTask extends Task{
 
 	}
 
-
 	public function onRun(int $currentTick){
 
-		$players = $this->owner->getServer()->getInstance()->getOnlinePlayers();
+		$players = $this->owner->getServer()->getOnlinePlayers();
 
 		if($players == null){
 			$this->owner->getServer()->shutdown();
 
 		}else{
-
 			foreach($players as $player){
 				$player->kick($this->message, false);
 				$this->owner->getServer()->shutdown();
@@ -30,5 +28,4 @@ class ShutdownTask extends Task{
 			}
 		}
 	}
-
 }
