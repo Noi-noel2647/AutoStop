@@ -4,7 +4,7 @@
 ## Description -プラグインの説明-
 A Pocketmine-MP plugin. <br>
 サーバー自動再起動の補助をするプラグインです。 <br>
-別途、loop.cmd or loop.shが必要です。 <br>
+別途、ループ起動するstartバッチファイルが必要です。 <br>
 
 ## Usage -使い方-
 pluginsフォルダにpharファイルを導入。<br>
