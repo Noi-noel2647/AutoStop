@@ -4,9 +4,9 @@ namespace Noi\tasks;
 
 use pocketmine\scheduler\Task;
 
-class ShutdownTask extends Task{
+class ShutdownTask extends Task {
 
-	public function __construct($owner, $message){
+	public function __construct($owner, $message) {
 
 		$this->owner = $owner;
 		$this->message = $message;
@@ -14,16 +14,16 @@ class ShutdownTask extends Task{
 	}
 
 
-	public function onRun(int $currentTick){
+	public function onRun(int $currentTick) {
 
 		$players = $this->owner->getServer()->getOnlinePlayers();
 
-		if($players == null){
+		if($players == null) {
 			$this->owner->getServer()->shutdown();
 
-		}else{
+		} else {
 
-			foreach($players as $player){
+			foreach($players as $player) {
 				$player->kick($this->message, false);
 				$this->owner->getServer()->shutdown();
 

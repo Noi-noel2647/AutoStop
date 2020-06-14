@@ -5,21 +5,23 @@ namespace Noi\tasks;
 use pocketmine\scheduler\Task;
 
 
-class MessageTask extends Task{
+class MessageTask extends Task {
 
-	public function __construct($owner, $time){
+	public function __construct($owner, $time) {
 
 		$this->owner = $owner;
-		$this->maxtime = $time;
+		$this->time = $time;
+		$this->MinCount = 5;		//分カウンター
 
 		if($time >= 72000){
-			$this->count = intval($time / 72000);
+			$this->HourCount = intval($time / 72000);	//$timeは〇時間かを$this->countに代入
+
 		}
 
 	}
 
 
-	public function onRun(int $tick){
+	public function onRun(int $tick){		//1200tickごとに処理
 
 		$this->TimeSchedule();
 
@@ -28,41 +30,32 @@ class MessageTask extends Task{
 
 
 
-	private function TimeSchedule(){
+	private function TimeSchedule() {
 
-		if(isset($this->count) && $this->maxtime === ($this->count * 72000)){
+		if(!empty ($this->HourCount) ) {
 
-			$this->owner->getServer()->broadcastMessage(" §e[Server] §b再起動§fまで §a残り{$this->count}時間 §fです");
+			if($this->time == ($this->HourCount * 72000)) {			//１時間単位でメッセージを表示
+				$this->owner->getServer()->broadcastMessage(" §e[Server] §b再起動§fまで §a残り{$this->HourCount}時間 §fです");
+				$this->HourCount--;
 
-			if(!$this->count == 0){
-				$this->count--;
 			}
+		}
 
-		}else if($this->maxtime === 54000){
-			$this->owner->getServer()->broadcastMessage(" §e[Server] §b再起動§fまで §a残り45分 §fです");
+		if($this->time == $this->MinCount * 10 * 1200) {			//10分単位でメッセージを表示
+			$this->owner->getServer()->broadcastMessage(" §e[Server] §b再起動§fまで §a残り". $this->MinCount * 10 ."分 §fです");
+			$this->MinCount--;
 
-		}else if($this->maxtime === 36000){
-			$this->owner->getServer()->broadcastMessage(" §e[Server] §b再起動§fまで §a残り30分 §fです");
-
-		}else if($this->maxtime === 18000){
-			$this->owner->getServer()->broadcastMessage(" §e[Server] §b再起動§fまで §a残り15分 §fです");
-
-		}else if($this->maxtime === 12000){
-			$this->owner->getServer()->broadcastMessage(" §e[Server] §b再起動§fまで §a残り10分 §fです");
-
-		}else if($this->maxtime === 6000){
+		}else if($this->time === 6000) {
 			$this->owner->getServer()->broadcastMessage(" §e[Server] §b再起動§fまで §a残り5分 §fです");
 
-		}else if($this->maxtime === 1200){
+		}else if($this->time === 1200) {
 			$this->owner->getServer()->broadcastMessage(" §e[Server] §b再起動§fまで §c残り1分 §fです");
 
 
 		}
 
-		$this->maxtime = $this->maxtime - 1200;
+		$this->time -= 1200;
 
 	}
-
-
 
 }

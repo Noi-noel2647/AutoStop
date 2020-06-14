@@ -21,3 +21,14 @@ class AutoStop extends PluginBase {
 	}
 
 }
+
+
+
+/*
+	ToDo:
+
+		１時間	1h
+		１分	1m		1h15m30s 的にConfigファイルで設定させる
+		１秒	1s
+
+*/
