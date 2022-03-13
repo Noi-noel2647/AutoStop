@@ -15,4 +15,3 @@ configファイルから再起動時のキックメッセージと再起動ま�
 
 ## Author -製作者-
 [Github](https://github.com/shoki-3738) <br>
-[Twitter](https://twitter.com/Noi_noel2647)
